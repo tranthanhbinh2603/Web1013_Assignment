@@ -2530,3 +2530,115 @@ section {
   syntax: "*";
   inherits: false;
 }
+/* FORM CONTAINER */
+.w-full.max-w-4xl {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+/* TITLE */
+.text-3xl.font-bold.text-center {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* TITLE UNDERLINE */
+.text-3xl.font-bold.text-center:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #f78d4e;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* INPUT FIELDS */
+.border-gray-300 {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+
+/* FOCUS STATE */
+.focus\:ring-orange-500:focus {
+  outline: none;
+  border-color: #f78d4e;
+  box-shadow: 0 0 0 3px rgba(247,141,78,0.2);
+}
+
+/* BUTTON */
+.bg-\[\#f78d4e\] {
+  background: #f78d4e !important;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* SUCCESS MESSAGE */
+.hidden {
+  padding: 1rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  border-radius: 0.375rem;
+  margin-top: 1.5rem;
+}
+/* === FIXED STYLES === */
+.file-upload-container {
+  margin: 15px 0;
+}
+
+.file-upload-label {
+  display: block;
+  cursor: pointer;
+}
+
+.file-upload-area {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.file-upload-area:hover {
+  border-color: #f78d4e;
+  background-color: #fff7f2;
+}
+
+.file-upload-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.file-upload-text {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.file-upload-input {
+  display: none; /* Ẩn input thật */
+}
+
+/* Hiển thị khi có file */
+.has-file .file-upload-text {
+  color: #f78d4e;
+  font-weight: 500;
+}

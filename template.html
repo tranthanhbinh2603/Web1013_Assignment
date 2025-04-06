@@ -11,6 +11,56 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>FPT Polytechnic - Nơi ươm mầm cho những tương lai!</title>
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('screenshot');
+        const fileNameDisplay = document.getElementById('file-name');
+        const uploadArea = document.querySelector('.file-upload-area');
+        const uploadLabel = document.querySelector('.file-upload-label');
+        // Tạo container preview ảnh (nếu chưa có)
+        let previewContainer = document.createElement('div');
+        previewContainer.className = 'image-preview';
+        previewContainer.style.marginTop = '10px';
+        uploadArea.parentNode.insertBefore(previewContainer, uploadArea.nextSibling);
+        fileInput.addEventListener('change', function(e) {
+        if (this.files && this.files.length > 0) {
+            // 1. Hiển thị tên file
+            fileNameDisplay.textContent = this.files[0].name;
+            fileNameDisplay.style.color = '#f78d4e'; // Màu cam khi có file
+            // 2. Hiển thị preview nếu là ảnh
+            previewContainer.innerHTML = '';
+            if (this.files[0].type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewContainer.innerHTML = `
+                <img src="${event.target.result}" 
+                    style="max-width: 100%; 
+                            max-height: 200px;
+                            border-radius: 4px;
+                            margin-top: 8px;">
+                `;
+            };
+            reader.readAsDataURL(this.files[0]);
+            }
+        } else {
+            // Reset khi không có file
+            fileNameDisplay.textContent = 'Chọn tệp hoặc kéo thả vào đây';
+            fileNameDisplay.style.color = '';
+            previewContainer.innerHTML = '';
+        }
+        });
+        // Tối ưu UX: Thêm hiệu ứng khi kéo file vào
+        uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = '#f78d4e';
+        uploadArea.style.backgroundColor = '#fff7f2';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.borderColor = '#d1d5db';
+        uploadArea.style.backgroundColor = '';
+        });
+    });
+    </script>
 
 <body>
     <header class="header no-background max-w-screen flex m-auto justify-center">
@@ -49,7 +99,147 @@
 
     <section class="max-w-screen">
         <div class="flex items-center justify-center relative flex-col container m-auto">
-            <!--Bắt đầu code ở đây-->
+                        <!--Bắt đầu code ở đây-->
+                                    <!--Bắt đầu code ở đây-->
+            <div class="w-full max-w-4xl bg-white rounded-lg shadow-md p-8 mb-10">
+                <h1 class="text-3xl font-bold text-center mb-8">Báo lỗi trang web</h1>
+                <form id="reportForm" class="space-y-6">
+                    <div>
+                        <label for="errorUrl" class="block text-sm font-medium text-gray-700">URL trang bị lỗi</label>
+                        <input type="url" id="errorUrl" name="errorUrl" required
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    
+                    <div>
+                        <label for="errorType" class="block text-sm font-medium text-gray-700">Loại lỗi</label>
+                        <select id="errorType" name="errorType" required
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            <option value="">-- Chọn loại lỗi --</option>
+                            <option value="broken_link">Liên kết hỏng</option>
+                            <option value="display_error">Lỗi hiển thị</option>
+                            <option value="function_error">Lỗi chức năng</option>
+                            <option value="content_error">Lỗi nội dung</option>
+                            <option value="other">Lỗi khác</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="errorDescription" class="block text-sm font-medium text-gray-700">Mô tả chi tiết lỗi</label>
+                        <textarea id="errorDescription" name="errorDescription" rows="4" required
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="screenshot" class="block text-sm font-medium text-gray-700">Ảnh chụp màn hình (nếu có)</label>
+                        <div class="file-upload-container">
+                            <!-- Đảm bảo label BAO NGOÀI toàn bộ khu vực cần click -->
+                            <label for="screenshot" class="file-upload-label">
+                            <div class="file-upload-area">
+                                <span class="file-upload-icon">📁</span>
+                                <span class="file-upload-text" id="file-name">Chọn tệp hoặc kéo thả vào đây</span>
+                            </div>
+                            <input type="file" id="screenshot" name="screenshot" class="file-upload-input">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="contactEmail" class="block text-sm font-medium text-gray-700">Email liên hệ (nếu muốn nhận phản hồi)</label>
+                        <input type="email" id="contactEmail" name="contactEmail"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-[#f78d4e] text-white font-bold py-3 px-8 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                            Gửi báo lỗi
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="successMessageReport" class="hidden mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <p class="font-bold">Cảm ơn bạn!</p>
+                    <p>Thông tin báo lỗi của bạn đã được gửi thành công. Chúng tôi sẽ xem xét và khắc phục trong thời gian sớm nhất.</p>
+                </div>
+            </div>
+            
+            <div class="w-full max-w-4xl bg-white rounded-lg shadow-md p-8">
+                <h1 class="text-3xl font-bold text-center mb-8">Hòm thư góp ý</h1>
+                <form id="feedbackForm" class="space-y-6">
+                    <div>
+                        <label for="feedbackType" class="block text-sm font-medium text-gray-700">Loại góp ý</label>
+                        <select id="feedbackType" name="feedbackType" required
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            <option value="">-- Chọn loại góp ý --</option>
+                            <option value="suggestion">Đề xuất cải tiến</option>
+                            <option value="complaint">Khiếu nại</option>
+                            <option value="compliment">Khen ngợi</option>
+                            <option value="question">Câu hỏi</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="feedbackContent" class="block text-sm font-medium text-gray-700">Nội dung góp ý</label>
+                        <textarea id="feedbackContent" name="feedbackContent" rows="4" required
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700">Họ và tên</label>
+                            <input type="text" id="fullName" name="fullName" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Số điện thoại (tuỳ chọn)</label>
+                        <input type="tel" id="phone" name="phone"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-[#f78d4e] text-white font-bold py-3 px-8 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                            Gửi góp ý
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="successMessageFeedback" class="hidden mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                    <p class="font-bold">Cảm ơn bạn đã góp ý!</p>
+                    <p>Ý kiến của bạn đã được gửi thành công. Chúng tôi rất trân trọng sự đóng góp của bạn.</p>
+                </div>
+            </div>
+            
+            <script>
+                // Xử lý form báo lỗi
+                document.getElementById('reportForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Ẩn form và hiển thị thông báo thành công
+                    this.style.display = 'none';
+                    document.getElementById('successMessageReport').classList.remove('hidden');
+                    // Cuộn lên đầu thông báo
+                    document.getElementById('successMessageReport').scrollIntoView({ behavior: 'smooth' });
+                });
+                
+                // Xử lý form góp ý
+                document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Ẩn form và hiển thị thông báo thành công
+                    this.style.display = 'none';
+                    document.getElementById('successMessageFeedback').classList.remove('hidden');
+                    // Cuộn lên đầu thông báo
+                    document.getElementById('successMessageFeedback').scrollIntoView({ behavior: 'smooth' });
+                });
+            </script>
+            <!--Kết thúc code ở đây-->
+                        <!--Kết thúc code ở đây-->
         </div>
     </section>
 
