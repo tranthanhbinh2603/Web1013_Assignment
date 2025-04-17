@@ -25,6 +25,7 @@
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=627214410174728"></script>
     <script src="https://uhchat.net/code.php?f=801b19"></script>
+    <script src="https://uhchat.net/code.php?f=801b19"></script>
     <header class="header max-w-screen flex m-auto justify-center">
         <div class="header__container container flex flex-col h-[100vh] text-white font-bold">
             <nav class="flex justify-between items-center mt-8 ">
@@ -33,7 +34,7 @@
                 </a>
                 <div class="flex justify-center items-center gap-4">
                     <a href="./index.html" class="link uppercase">trang chủ</a>
-                    <a href="#" class="uppercase relative nav_blog--btn">blog<svg class="w-[30px] inline"
+                    <div href="#" class="uppercase relative nav_blog--btn">blog<svg class="w-[30px] inline"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -43,15 +44,33 @@
                                     fill="#ffffff"></path>
                             </g>
                         </svg>
-                        <div class="absolute capitalize nav_blog--list hidden-menu" style="width: 300px;">
-                            <div class="p-4 bg-white text-black hover:bg-zinc-300">Cánh cửa mở ra tương lai nghề nghiệp
-                            </div>
-                            <div class="p-4 bg-white text-black hover:bg-zinc-300">Hành Trình Trở Thành Sinh Viên</div>
-                            <div class="p-4 bg-white text-black hover:bg-zinc-300">Top 5 Lý Do Bạn Nên Chọn</div>
-                            <div class="p-4 bg-white text-black hover:bg-zinc-300">Cuộc Sống Sinh Viên Tại FPT
-                                Polytechnic</div>
+                        <div class="absolute capitalize nav_blog--list hidden-menu z-50" style="width: 300px;">
+                            <a href="./Blog1.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Cánh cửa mở
+                                ra tương lai
+                                nghề nghiệp</a>
+                            <a href="./Blog2.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Hành Trình
+                                Trở Thành
+                                Sinh Viên</a>
+                            <a href="./Blog3.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Top 5 Lý Do
+                                Bạn Nên
+                                Chọn</a>
+                            <a href="./Blog4.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Cuộc Sống
+                                Sinh Viên Tại
+                                FPT Polytechnic</a>
+                            <a href="./Blog5.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Đào Tạo Gắn
+                                Liền Với Doanh Nghiệp Như Thế Nào?</a>
+                            <a href="./Blog6.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Sự khác biệt
+                                trong trải nghiệm</a>
+                            <a href="./Blog7.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Sinh viên FPT
+                                Polytechnic Đồng Nai có thể làm gì sau khi tốt nghiệp?</a>
+                            <a href="./Blog8.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Những kỹ năng
+                                mềm sinh viên cần có</a>
+                            <a href="./Blog9.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Top 5 hoạt
+                                động ngoại khóa nổi bật</a>
+                            <a href="./Blog10.html" class="block p-4 bg-white text-black hover:bg-zinc-300">Vì sao học
+                                tại FPT Polytechnic Đồng Nai là bước đệm vững chắc cho sự nghiệp tương lai?</a>
                         </div>
-                    </a>
+                    </div>
                     <a href="contact.html" class="link uppercase">liên hệ</a>
                     <a href="error.html" class="link uppercase">báo lỗi trang web</a>
                 </div>
@@ -292,7 +311,7 @@
                         </button>
                     </div>
                     <div id="success-message" class="hidden text-green-600 font-semibold pt-3 pr-8 mb-20">
-                        Cảm ơn bạn! Email đã được gửi thành công.
+                        Cảm ơn bạn! Email đã được gửi thành công. Vui lòng check trong inbox hoặc spam.
                     </div>
                 </div>
                 <div class="flex-2/5"></div>
@@ -352,7 +371,7 @@
                     </button>
                 </div>
                 <div id="success-message-footer" class="hidden text-white font-semibold pt-3 pr-8 mb-4">
-                    Cảm ơn bạn! Email đã được gửi thành công.
+                    Cảm ơn bạn! Email đã được gửi thành công. Vui lòng check trong inbox hoặc spam.
                 </div>
                 <div class="flex flex-row items-center justify-center gap-4">
                     <a href="https://www.facebook.com/fpt.poly">
@@ -484,34 +503,6 @@
                     console.log('FAILED...', error);
                     alert('Đã xảy ra lỗi khi gửi email. Vui lòng thử lại sau.');
                 });
-        });
-
-        const blogListContainer = document.querySelector('.nav_blog--list');
-        const blogItems = blogListContainer.querySelectorAll('div');
-
-        blogItems.forEach(item => {
-            item.addEventListener('click', function () {
-                let url = '';
-                const textContent = this.textContent.trim();
-                switch (textContent) {
-                    case 'Cánh cửa mở ra tương lai nghề nghiệp':
-                        url = '/Blog1.html';
-                        break;
-                    case 'Hành Trình Trở Thành Sinh Viên':
-                        url = '/Blog2.html';
-                        break;
-                    case 'Top 5 Lý Do Bạn Nên Chọn':
-                        url = '/Blog3.html';
-                        break;
-                    default:
-                        url = '/Blog4.html';
-                        break;
-                }
-                if (url) {
-                    window.location.href = url;
-                }
-            });
-            item.style.cursor = 'pointer';
         });
     </script>
 </body>
