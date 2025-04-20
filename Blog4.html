@@ -336,30 +336,7 @@
         </div>
     </footer>
     <script>
-        document.getElementById('send-button').addEventListener('click', function (event) {
-            event.preventDefault();
 
-            const emailInput = document.getElementById('email-input');
-            const email = emailInput.value.trim();
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Vui lòng nhập địa chỉ email hợp lệ.');
-                return;
-            }
-
-            emailjs.send("service_hqm5hks", "template_f0cflnd", {
-                email: email
-            })
-                .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    document.getElementById('email-form').classList.add('hidden');
-                    document.getElementById('success-message').classList.remove('hidden');
-                }, function (error) {
-                    console.log('FAILED...', error);
-                    alert('Đã xảy ra lỗi khi gửi email. Vui lòng thử lại sau.');
-                });
-        });
 
         document.getElementById('send-button-footer').addEventListener('click', function (event) {
             event.preventDefault();
@@ -386,33 +363,7 @@
                 });
         });
 
-        const blogListContainer = document.querySelector('.nav_blog--list');
-        const blogItems = blogListContainer.querySelectorAll('div');
 
-        blogItems.forEach(item => {
-            item.addEventListener('click', function () {
-                let url = '';
-                const textContent = this.textContent.trim();
-                switch (textContent) {
-                    case 'Cánh cửa mở ra tương lai nghề nghiệp':
-                        url = '/Blog1.html';
-                        break;
-                    case 'Hành Trình Trở Thành Sinh Viên':
-                        url = '/Blog2.html';
-                        break;
-                    case 'Top 5 Lý Do Bạn Nên Chọn':
-                        url = '/Blog3.html';
-                        break;
-                    default:
-                        url = '/Blog4.html';
-                        break;
-                }
-                if (url) {
-                    window.location.href = url;
-                }
-            });
-            item.style.cursor = 'pointer';
-        });
     </script>
 </body>
 
